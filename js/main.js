@@ -151,7 +151,9 @@ for (const [key, value] of Object.entries(book_chap)) {
   // Add a click event listener to each button using a closure
   (function(book) {
     button.addEventListener('click', function() {
-      now_verse = ""
+      now_verse = "";
+      disabled_view(true);
+
       update_info(abbr(book));
       sel_book=book;
 
@@ -170,7 +172,10 @@ document.getElementById("sec_section").addEventListener("change", function() {
     texts += num.innerHTML;
   }
   now_verse=texts;
-  update_info(abbr(sel_book)+" "+sel_chap+":"+formatArray(verses_num));
+  disabled_view(false);
+  
+  bible_info = abbr(sel_book)+" "+sel_chap+":"+formatArray(verses_num);
+  update_info(bible_info);
   writeToClipboard(document.getElementById("bible_info").innerHTML+"\n"+texts);
 });
 
@@ -215,7 +220,8 @@ document.getElementById("abbrChecked").addEventListener("change", function() {
   let element = document.getElementById("bible_info").innerHTML;
   if (element != "Bible_COPY"){
     if (element.includes(" ")){
-      document.getElementById("bible_info").innerHTML = abbr(sel_book) + " " + element.split(' ').slice(1).join(' ');
+      bible_info = abbr(sel_book) + " " + element.split(' ').slice(1).join(' ');
+      document.getElementById("bible_info").innerHTML = bible_info;
     } else {
       document.getElementById("bible_info").innerHTML = abbr(sel_book);
     }
@@ -249,6 +255,8 @@ function update_chap(book){
     (function(book, chap) {
       button.addEventListener('click', function() {
         now_verse = ""
+        disabled_view(true);
+      
         let element = document.getElementById("sec_section");
         while (element.firstChild) {
           element.removeChild(element.firstChild);
@@ -282,4 +290,19 @@ function update_chap(book){
       });
     })(book, i);
   }
+}
+
+// view
+
+document.getElementById("view_button").addEventListener("click", function() {
+  const url = 'view.html';
+  const params = {text_title:bible_info, text_verse: now_verse};
+
+  const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+  const requestUrl = url + '?' + queryString;
+  window.open(requestUrl);
+});
+
+function disabled_view(d){
+  document.getElementById("view_button").disabled = d;
 }
