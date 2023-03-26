@@ -1,15 +1,19 @@
 body{
-	background: #1c92d2;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background-color: #aee1f9;
+	background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
+/*	background: #1c92d2;  /* fallback for old browsers */
+/*	background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */*/
+/*	background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */*/
 }
 #info{
 	font-size: 6em;
 	font-weight: bold;
-	color: #1E3F66;
+	color: #2e5984;
+	background-color: #fff1;
 }
 #verse{
 	font-size: 5em;
 	font-weight: bold;
-	color: #222021;
+	color: #2e5984;
+	text-align: justify;
 }
